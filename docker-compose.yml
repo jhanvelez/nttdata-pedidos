@@ -22,7 +22,7 @@ services:
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      APP_JWT_SECRET: secret123456
+      APP_JWT_SECRET: U2VjdXJlS2V5Rm9ySldUU2lnbmluZ1B1cnBvc2VzT25seQ==
       APP_JWT_EXPIRATION_MS: 86400000
     ports:
       - "8080:8080"
