@@ -18,7 +18,7 @@ API de pedidos empresariales usando Spring Boot (Hexagonal Architecture) con Pos
 1. Clonar el repositorio:
 
 ```bash
-git clone https://github.com/TU_USUARIO/nttdata-pedidos.git
+git clone https://github.com/jhanvelez/nttdata-pedidos.git
 cd nttdata-pedidos
 ```
 
