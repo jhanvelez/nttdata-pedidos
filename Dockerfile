@@ -1,6 +1,4 @@
-# ============================
 # 1) Build stage
-# ============================
 FROM eclipse-temurin:17-jdk AS builder
 
 WORKDIR /app
@@ -17,9 +15,7 @@ RUN ./mvnw -q -DskipTests package
 RUN ./mvnw dependency:resolve
 RUN ./mvnw -q -DskipTests package
 
-# ============================
-# 2) Runtime stage
-# ============================
+# Runtime stage
 FROM eclipse-temurin:17-jre
 
 WORKDIR /app

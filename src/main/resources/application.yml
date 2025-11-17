@@ -1,0 +1,87 @@
+spring:
+  application:
+    name: pedidos-service
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/pedidosdb}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      auto-commit: false
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        connection.handling_mode: DELAYED_ACQUISITION_AND_HOLD
+        jdbc:
+          batch_size: 20
+        order_inserts: true
+        order_updates: true
+        connection.provider_disables_autocommit: true
+      jakarta:
+        persistence:
+          sharedCache:
+            mode: ENABLE_SELECTIVE
+
+  springdoc:
+    api-docs:
+      path: /v3/api-docs
+      enabled: true
+    swagger-ui:
+      path: /swagger-ui.html
+      enabled: true
+      operations-sorter: method
+      tags-sorter: alpha
+      try-it-out-enabled: true
+    info:
+      title: NTTDATA E-commerce API
+      description: |
+        Plataforma para gestión de pedidos de tienda online - Prueba Técnica
+        **Características:**
+        - Gestión de usuarios
+        - Catálogo de productos  
+        - Procesamiento de pedidos
+        - Autenticación JWT
+      version: 1.0.0
+      contact:
+        name: Soporte NTTDATA
+        email: soporte@nttdata.com
+      license:
+        name: Apache 2.0
+        url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+app:
+  jwt:
+    secret: ${APP_JWT_SECRET:U2VjdXJlS2V5Rm9ySldUU2lnbmluZ1B1cnBvc2VzT25seQ==}
+    expiration-ms: ${APP_JWT_EXPIRATION_MS:86400000}
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    min-response-size: 1024
+
+logging:
+  level:
+    com.nttdata.pedidos: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.hibernate.SQL: WARN
+    org.hibernate.type.descriptor.sql: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/application.log
